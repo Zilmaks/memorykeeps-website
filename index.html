@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MemoryKeeps — Preserving the stories of a generation</title>
+<meta name="description" content="A nonprofit memory preservation platform. Every voice. Every story. Forever.">
+<meta property="og:title" content="MemoryKeeps">
+<meta property="og:description" content="Preserving every precious moment. Every voice. Every story. Forever.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* 与 PWA 对齐的色板 */
+    --cream: #FAF1E4;          /* 主背景 - 暖米色 */
+    --cream-deep: #F2E6D0;     /* 深一档米色 */
+    --paper: #FFFFFF;          /* 卡片白底 */
+    --paper-soft: #FBF7EE;
+    --ink: #1F1A14;            /* 主文字 - 深棕黑 */
+    --ink-soft: #56504A;       /* 次要文字 */
+    --ink-mute: #8C857B;       /* 辅助文字 */
+    --orange: #F37A28;         /* 主橙 */
+    --orange-light: #FFA559;   /* 浅橙 */
+    --orange-deep: #D45F12;    /* 深橙 */
+    --green-mute: #DCEAD4;     /* 完成标签底 */
+    --green-deep: #4A7C3A;     /* 完成标签字 */
+    --rule: #E8DCC4;
+    --max: 1200px;
+    --shadow-sm: 0 2px 12px rgba(31, 26, 20, 0.06);
+    --shadow-md: 0 8px 32px rgba(31, 26, 20, 0.08);
+    --shadow-warm: 0 12px 40px rgba(243, 122, 40, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  .sc { font-family: 'Noto Serif SC', serif; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250, 241, 228, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .brand svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    font-size: 14px;
+  }
+
+  .nav-right a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-right a:hover { color: var(--orange-deep); }
+
+  .enter-btn {
+    padding: 11px 24px;
+    background: var(--orange);
+    color: white !important;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: var(--shadow-warm);
+    transition: all 0.25s;
+  }
+
+  .enter-btn:hover {
+    background: var(--orange-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 44px rgba(243, 122, 40, 0.28);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 100px 40px 140px;
+    max-width: var(--max);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    margin-bottom: 32px;
+    padding: 6px 16px;
+    background: rgba(243, 122, 40, 0.1);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(54px, 9vw, 124px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+  }
+
+  .hero-title-cn {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 500;
+    font-size: clamp(24px, 4vw, 42px);
+    color: var(--ink-soft);
+    letter-spacing: 0.4em;
+    margin-top: 16px;
+    padding-left: 0.4em;
+  }
+
+  .hero-sep {
+    margin: 40px auto;
+    width: 56px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto;
+    letter-spacing: -0.005em;
+  }
+
+  .hero-cta-wrap {
+    margin-top: 56px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 38px;
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 52px rgba(243, 122, 40, 0.32);
+    background: var(--orange-deep);
+  }
+
+  .cta-primary svg { width: 18px; height: 18px; }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 28px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 999px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    transition: all 0.25s;
+  }
+
+  .cta-secondary:hover {
+    color: var(--orange-deep);
+    border-color: var(--orange-light);
+    background: var(--paper-soft);
+  }
+
+  /* Decorative leaves on hero */
+  .hero-deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .hero-deco.left {
+    left: 8%;
+    top: 30%;
+    width: 60px;
+    height: 60px;
+    transform: rotate(-15deg);
+  }
+  .hero-deco.right {
+    right: 10%;
+    bottom: 18%;
+    width: 80px;
+    height: 80px;
+    transform: rotate(20deg);
+  }
+
+  /* ===== ABOUT ===== */
+  .about {
+    padding: 100px 40px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .about-card {
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 80px 80px;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    font-weight: 600;
+    padding-top: 12px;
+  }
+
+  .about-body {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.5;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .about-body p + p { margin-top: 22px; }
+
+  .about-body em {
+    color: var(--orange-deep);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ===== ARCHIVE ===== */
+  .archive {
+    padding: 100px 40px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .archive-head {
+    margin-bottom: 56px;
+    text-align: center;
+  }
+
+  .archive-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-top: 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .archive-title em {
+    color: var(--orange-deep);
+    font-style: italic;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .archive-card {
+    background: var(--paper);
+    border-radius: 20px;
+    padding: 36px 32px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .archive-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .archive-num {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--orange-deep);
+    text-transform: uppercase;
+    background: rgba(243, 122, 40, 0.1);
+    padding: 4px 10px;
+    border-radius: 999px;
+    align-self: flex-start;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .archive-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink);
+    flex-grow: 1;
+    font-weight: 300;
+  }
+
+  .archive-meta {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .archive-note {
+    margin-top: 56px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--ink-mute);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* ===== PARTNERS ===== */
+  .partners {
+    padding: 100px 40px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .partners-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .partners-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-top: 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .partner {
+    background: var(--paper);
+    padding: 36px 24px;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+  }
+
+  .partner:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .partner-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .partner-loc {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+
+  .partner-pending .partner-name {
+    color: var(--ink-mute);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ===== GET INVOLVED ===== */
+  .involve {
+    padding: 100px 40px 120px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .involve-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .involve-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 20px auto 0;
+  }
+
+  .involve-title em {
+    color: var(--orange-deep);
+    font-style: italic;
+  }
+
+  .involve-paths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .path {
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.35s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .path:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .path-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(243, 122, 40, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .path-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--orange-deep);
+  }
+
+  .path-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--orange-deep);
+    margin-bottom: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .path-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .path-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    flex-grow: 1;
+  }
+
+  .path-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--orange-deep);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.25s;
+    align-self: flex-start;
+  }
+
+  .path-cta::after {
+    content: "→";
+    transition: transform 0.3s;
+  }
+
+  .path-cta:hover { color: var(--orange); }
+  .path-cta:hover::after { transform: translateX(4px); }
+
+  /* ===== FLOATING PLATFORM BUTTON (PWA-inspired) ===== */
+  .float-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 24px 14px 18px;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0 12px 36px rgba(243, 122, 40, 0.4);
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+
+  .float-cta.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .float-cta:hover {
+    background: var(--orange-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 44px rgba(243, 122, 40, 0.5);
+  }
+
+  .float-cta-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .float-cta-icon svg { width: 16px; height: 16px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--cream-deep);
+    padding: 80px 40px 40px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+
+  .footer-about {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 340px;
+    margin-top: 18px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .footer-col a, .footer-col span {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-bottom: 11px;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--orange-deep); }
+
+  .footer-bottom {
+    max-width: var(--max);
+    margin: 60px auto 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  .footer-bottom em { font-style: italic; color: var(--orange-deep); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeIn 1s cubic-bezier(0.2,0.8,0.2,1) forwards;
+  }
+  .fade.d1 { animation-delay: 0.12s; }
+  .fade.d2 { animation-delay: 0.28s; }
+  .fade.d3 { animation-delay: 0.44s; }
+  .fade.d4 { animation-delay: 0.6s; }
+  .fade.d5 { animation-delay: 0.76s; }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .no-js .reveal { opacity: 1; transform: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-right a:not(.enter-btn) { display: none; }
+    .enter-btn { padding: 9px 18px; font-size: 13px; }
+
+    .hero { padding: 60px 24px 80px; }
+    .hero-cta-wrap { flex-direction: column; align-items: stretch; padding: 0 20px; }
+    .cta-primary, .cta-secondary { justify-content: center; }
+    .hero-deco { display: none; }
+
+    .about { padding: 60px 24px; }
+    .about-card { padding: 48px 32px; grid-template-columns: 1fr; gap: 24px; border-radius: 18px; }
+
+    .archive { padding: 60px 24px; }
+    .archive-grid { grid-template-columns: 1fr; }
+
+    .partners { padding: 60px 24px; }
+    .partners-grid { grid-template-columns: 1fr 1fr; }
+
+    .involve { padding: 60px 24px 80px; }
+    .involve-paths { grid-template-columns: 1fr; }
+
+    .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    footer { padding: 60px 24px 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; padding: 28px 24px 0; }
+
+    .float-cta { bottom: 16px; right: 16px; padding: 12px 18px 12px 14px; font-size: 13px; }
+  }
+
+  @media (max-width: 500px) {
+    .partners-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="brand">
+    <svg viewBox="0 0 60 60" fill="none">
+      <rect x="6" y="6" width="48" height="48" rx="10" fill="#F37A28"/>
+      <circle cx="23" cy="24" r="5" fill="white"/>
+      <circle cx="34" cy="30" r="3.5" fill="white"/>
+      <path d="M 12 48 Q 18 36 28 36 Q 36 36 42 43 L 48 50 L 12 50 Z" fill="white"/>
+    </svg>
+    MemoryKeeps
+  </a>
+  <div class="nav-right">
+    <a href="#about">About</a>
+    <a href="#archive">Stories</a>
+    <a href="#involve">Get Involved</a>
+    <a href="https://npo.memorykeeps.org" class="enter-btn">Enter Platform</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <!-- Decorative subtle leaves -->
+  <svg class="hero-deco left" viewBox="0 0 100 100" fill="none">
+    <path d="M50 10 Q70 30 70 50 Q70 75 50 90 Q30 75 30 50 Q30 30 50 10 Z" fill="#F37A28" opacity="0.3"/>
+    <path d="M50 20 L50 85" stroke="#F37A28" stroke-width="1.5" opacity="0.4"/>
+  </svg>
+  <svg class="hero-deco right" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="35" stroke="#F37A28" stroke-width="1" opacity="0.4" fill="none"/>
+    <circle cx="50" cy="50" r="22" stroke="#F37A28" stroke-width="1" opacity="0.3" fill="none"/>
+    <circle cx="50" cy="50" r="10" fill="#F37A28" opacity="0.2"/>
+  </svg>
+
+  <div class="hero-label fade">An Archive of Lives</div>
+  <h1 class="hero-title fade d1">Remembering</h1>
+  <div class="hero-sep fade d3"></div>
+  <p class="hero-sub fade d4">
+    Preserving every precious moment.<br>
+    Every voice. Every story. Forever.
+  </p>
+  <div class="hero-cta-wrap fade d5">
+    <a href="https://npo.memorykeeps.org" class="cta-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="23"/>
+        <line x1="8" y1="23" x2="16" y2="23"/>
+      </svg>
+      Enter Platform
+    </a>
+    <a href="#about" class="cta-secondary">Our Story</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-card reveal">
+    <div>
+      <span class="section-label">About</span>
+    </div>
+    <div class="about-body">
+      <p>
+        MemoryKeeps is a nonprofit platform for preserving the life stories of elders — in their own voices, with their own photographs, on their own time.
+      </p>
+      <p>
+        We believe memory is <em>the most precious thing we leave behind</em>. Others sell the printing; we give the printing as a gift. The real work — and the real gift — is the listening.
+      </p>
+      <p>
+        Operated under FMedu, a federally registered nonprofit since 2017, our platform hosts stories from seniors served by partner organizations across communities. Free for every senior. Private by default. Preserved for generations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="archive" id="archive">
+  <div class="archive-head reveal">
+    <span class="section-label">Archive No. 001</span>
+    <h2 class="archive-title">
+      A gallery of <em>voices</em><br>
+      that might otherwise have been lost.
+    </h2>
+  </div>
+
+  <div class="archive-grid">
+    <div class="archive-card reveal">
+      <span class="archive-num">Entry · I</span>
+      <blockquote class="archive-quote">
+        "I lived through three wars, two countries, and one very long love. If nobody writes it down, it's as if none of it happened."
+      </blockquote>
+      <div class="archive-meta">2026 · Age 87</div>
+    </div>
+    <div class="archive-card reveal">
+      <span class="archive-num">Entry · II</span>
+      <blockquote class="archive-quote">
+        "My mother baked bread every Thursday for sixty years. I still smell it sometimes, when I'm alone in the kitchen."
+      </blockquote>
+      <div class="archive-meta">2026 · Age 82</div>
+    </div>
+    <div class="archive-card reveal">
+      <span class="archive-num">Entry · III</span>
+      <blockquote class="archive-quote">
+        "The boat was small and the ocean was very big. I held my sister's hand the whole way. She never let go."
+      </blockquote>
+      <div class="archive-meta">2026 · Age 91</div>
+    </div>
+  </div>
+
+  <p class="archive-note reveal">More entries will appear here as our partner organizations contribute.</p>
+</section>
+
+<section class="partners">
+  <div class="partners-head reveal">
+    <span class="section-label">Partners</span>
+    <h2 class="partners-title">
+      Organizations preserving<br>
+      the memories of their communities.
+    </h2>
+  </div>
+
+  <div class="partners-grid">
+    <div class="partner partner-pending reveal">
+      <div class="partner-name">Coming soon</div>
+      <div class="partner-loc">—</div>
+    </div>
+    <div class="partner partner-pending reveal">
+      <div class="partner-name">Coming soon</div>
+      <div class="partner-loc">—</div>
+    </div>
+    <div class="partner partner-pending reveal">
+      <div class="partner-name">Coming soon</div>
+      <div class="partner-loc">—</div>
+    </div>
+    <div class="partner partner-pending reveal">
+      <div class="partner-name">Your organization?</div>
+      <div class="partner-loc">Get in touch</div>
+    </div>
+  </div>
+</section>
+
+<section class="involve" id="involve">
+  <div class="involve-head reveal">
+    <span class="section-label">Get Involved</span>
+    <h2 class="involve-title">
+      Three ways to keep a story<br>
+      from <em>disappearing</em>.
+    </h2>
+  </div>
+
+  <div class="involve-paths">
+    <div class="path reveal">
+      <div class="path-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="path-label">For Families</div>
+      <h3 class="path-title">Give your parents a voice that won't fade.</h3>
+      <p class="path-body">
+        Invite your parent or grandparent to participate through a partner organization, or contact us directly.
+      </p>
+      <a href="mailto:rememo.vt@hotmail.com?subject=Family%20Participation" class="path-cta">Invite an elder</a>
+    </div>
+
+    <div class="path reveal">
+      <div class="path-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21h18"/>
+          <path d="M5 21V7l7-4 7 4v14"/>
+          <path d="M9 9h1"/>
+          <path d="M9 13h1"/>
+          <path d="M9 17h1"/>
+          <path d="M14 9h1"/>
+          <path d="M14 13h1"/>
+          <path d="M14 17h1"/>
+        </svg>
+      </div>
+      <div class="path-label">For Community Partners</div>
+      <h3 class="path-title">Host an event — with zero operational burden.</h3>
+      <p class="path-body">
+        Senior centers, libraries, cultural associations, faith communities. We bring everything, including volunteers.
+      </p>
+      <a href="mailto:rememo.vt@hotmail.com?subject=Partnership%20Inquiry" class="path-cta">Host an event</a>
+    </div>
+
+    <div class="path reveal">
+      <div class="path-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div class="path-label">For Sponsors</div>
+      <h3 class="path-title">Fund a memoir. Preserve a life.</h3>
+      <p class="path-body">
+        A modest contribution sponsors one senior's complete journey — from first scan to bound memoir book.
+      </p>
+      <a href="mailto:rememo.vt@hotmail.com?subject=Sponsorship%20Inquiry" class="path-cta">Sponsor a life</a>
+    </div>
+  </div>
+</section>
+
+<!-- Floating CTA inspired by PWA's bottom mic button -->
+<a href="https://npo.memorykeeps.org" class="float-cta" id="floatCta">
+  <span class="float-cta-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+    </svg>
+  </span>
+  Enter Platform
+</a>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="brand">
+        <svg viewBox="0 0 60 60" fill="none">
+          <rect x="6" y="6" width="48" height="48" rx="10" fill="#F37A28"/>
+          <circle cx="23" cy="24" r="5" fill="white"/>
+          <circle cx="34" cy="30" r="3.5" fill="white"/>
+          <path d="M 12 48 Q 18 36 28 36 Q 36 36 42 43 L 48 50 L 12 50 Z" fill="white"/>
+        </svg>
+        MemoryKeeps
+      </a>
+      <p class="footer-about">
+        A nonprofit memory preservation platform. Operated under FMedu, a federally registered nonprofit since 2017.
+      </p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <a href="mailto:rememo.vt@hotmail.com">rememo.vt@hotmail.com</a>
+      <a href="tel:+16474668858">+1 (647) 466-8858</a>
+      <span>WhatsApp available</span>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Platform</div>
+      <a href="https://npo.memorykeeps.org">Enter Platform</a>
+      <a href="#archive">Browse Archive</a>
+      <a href="#involve">Get Involved</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Operated by</div>
+      <span>FMedu</span>
+      <span>Federal Nonprofit</span>
+      <span>Est. 2017</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MemoryKeeps. All rights reserved.</span>
+    <span>Made with <em>care</em>.</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+
+  // Show floating CTA after scrolling past hero
+  const floatCta = document.getElementById('floatCta');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight * 0.6) {
+      floatCta.classList.add('show');
+    } else {
+      floatCta.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>
